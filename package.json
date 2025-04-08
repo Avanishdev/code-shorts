@@ -1,0 +1,113 @@
+{
+  "name": "code-shorts",
+  "displayName": "Coding Shorts",
+  "description": "Embed short-form with developer content",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.99.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:code-shorts.startReels"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "shorts.show",
+        "title": "Show Developer Shorts"
+      },
+      {
+        "command": "shorts.toggle",
+        "title": "Toggle Shorts Panel"
+      },
+      {
+        "command": "shorts.bookmark",
+        "title": "Bookmark Current Short"
+      },
+      {
+        "command": "shorts.startReels",
+        "title": "Start Developer Shorts"
+      },
+      {
+        "command": "shorts.pauseReels",
+        "title": "Pause Developer Shorts"
+      }
+    ],
+    "configuration": {
+      "title": "Developer Shorts",
+      "properties": {
+        "codeShorts.breakInterval": {
+          "type": "number",
+          "default": 25,
+          "description": "Pomodoro interval in minutes before showing Reels"
+        },
+        "codeShorts.autoplay": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically play Reels during breaks"
+        },
+        "codeShorts.muteByDefault": {
+          "type": "boolean",
+          "default": true,
+          "description": "Mute videos by default"
+        },
+        "codeShorts.categories": {
+          "type": "array",
+          "default": [
+            "javascript",
+            "python",
+            "webdev"
+          ],
+          "description": "Categories of developer content to show"
+        },
+        "codeShorts.platform": {
+          "type": "string",
+          "enum": [
+            "instgram",
+            "youtube"
+          ],
+          "default": "youtube"
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "dev-reels-sidebar",
+          "title": "Developer Reels",
+          "icon": "resources/reels-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "dev-reels-sidebar": [
+        {
+          "id": "devReelsView",
+          "name": "Developer Reels"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.99.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.28.0",
+    "@typescript-eslint/parser": "^8.28.0",
+    "eslint": "^9.23.0",
+    "typescript": "^5.8.2",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  }
+}
